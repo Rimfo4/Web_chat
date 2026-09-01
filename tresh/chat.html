@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실시간 채팅</title>
+<link rel="stylesheet" href="chat_css.css">
+</head>
+<body>
+
+  <div id="chat-window">
+
+    <div id="chat-header">
+      <span class="room-icon">-</span><span id="room-title">일반</span>
+    </div>
+
+    <div id="message-list">
+
+      <!-- 메시지 그룹 예시: 새 발신자 -->
+      <div class="message-group">
+        <img class="avatar" src="" alt="">
+        <div class="group-body">
+          <div class="meta-line">
+            <span class="username">김**</span>
+            <span class="timestamp">오후 01:22</span>
+          </div>
+          <div class="b-line">aaaaaaaaaaa</div>
+        </div>
+      </div>
+
+      <div class="message-group">
+        <img class="avatar" src="" alt="">
+        <div class="group-body">
+          <div class="meta-line">
+            <span class="username">ㅇㅇㅇ</span>
+            <span class="timestamp">오후 01:22</span>
+          </div>
+          <div class="b-line">긴글 test</div>
+          <div class="b-line">test</div>
+        </div>
+      </div>
+
+      <div class="message-group">
+        <img class="avatar" src="" alt="">
+        <div class="group-body">
+          <div class="meta-line">
+            <span class="username">김**</span>
+            <span class="timestamp">오후 01:23</span>
+          </div>
+          <div class="b-line">..</div>
+          <div class="b-line">asdasd</div>
+        </div>
+      </div>
+
+      <div class="message-group">
+        <img class="avatar" src="" alt="">
+        <div class="group-body">
+          <div class="meta-line">
+            <span class="username">ㅇㅇㅇ</span>
+            <span class="timestamp">오후 01:23</span>
+          </div>
+          <div class="b-line">qweqweqwe</div>
+          <div class="b-line">asdasdasdsadas</div>
+          <div class="b-line">zxczxczxczxczxc</div>
+        </div>
+      </div>
+
+      <div class="message-group">
+        <img class="avatar" src="" alt="">
+        <div class="group-body">
+          <div class="meta-line">
+            <span class="username">김**</span>
+            <span class="timestamp">오후 01:23</span>
+          </div>
+          <div class="b-line">221323131</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="chat-input-bar">
+      <input id="chat-input" type="text" placeholder="메시지 보내기">
+      <button id="send-btn" disabled>전송</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
