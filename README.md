@@ -13,4 +13,7 @@
 - server.js
   - server = http.createServer()
   - server.listen()
-  -
+- index.html
+- reset.css
+- style.css
+- client.js

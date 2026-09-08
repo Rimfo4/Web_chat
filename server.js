@@ -5,6 +5,7 @@ const path = require('path');
 const HOST = 'localhost';
 const PORT = Number(process.env.PORT) || 3000;
 const ROOT = path.resolve(__dirname);
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
