@@ -23,3 +23,15 @@
 - reset.css
 - style.css
 - client.js
+  -addEventListener("submit", (event) => {})
+  -addMessage()
+
+3. WebSocket
+   1. `npm i ws`
+      - WebSocketServer, WebSocket
+      - server.js
+        - was.on("connection", (ws) => {});
+          - ws.on("close", () => {});
+      - client.js
+        - ws.onopen = () => {};
+        - ws.onclose = () => {};

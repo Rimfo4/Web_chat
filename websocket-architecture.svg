@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .text { font: 15px Arial, sans-serif; fill: #334155; }
+      .box { stroke: #334155; stroke-width: 2; rx: 14; }
+      .line { stroke: #334155; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <text x="600" y="52" text-anchor="middle" class="title">실시간 채팅 서비스 WebSocket 구조</text>
+
+  <rect x="55" y="105" width="220" height="110" class="box" fill="#dbeafe"/>
+  <text x="165" y="143" text-anchor="middle" class="label">사용자 A 브라우저</text>
+  <text x="165" y="174" text-anchor="middle" class="text">메시지 작성·수신</text>
+
+  <rect x="55" y="290" width="220" height="110" class="box" fill="#dbeafe"/>
+  <text x="165" y="328" text-anchor="middle" class="label">사용자 B 브라우저</text>
+  <text x="165" y="359" text-anchor="middle" class="text">메시지 작성·수신</text>
+
+  <rect x="55" y="475" width="220" height="110" class="box" fill="#dbeafe"/>
+  <text x="165" y="513" text-anchor="middle" class="label">사용자 C 브라우저</text>
+  <text x="165" y="544" text-anchor="middle" class="text">메시지 작성·수신</text>
+
+  <rect x="410" y="205" width="330" height="270" class="box" fill="#dcfce7"/>
+  <text x="575" y="255" text-anchor="middle" class="label">WebSocket 서버</text>
+  <text x="575" y="300" text-anchor="middle" class="text">연결·채팅방 관리</text>
+  <text x="575" y="335" text-anchor="middle" class="text">인증·메시지 검증</text>
+  <text x="575" y="370" text-anchor="middle" class="text">메시지 저장</text>
+  <text x="575" y="405" text-anchor="middle" class="text">채팅방 사용자에게 브로드캐스트</text>
+
+  <rect x="900" y="115" width="230" height="105" class="box" fill="#fef3c7"/>
+  <text x="1015" y="153" text-anchor="middle" class="label">인증 시스템</text>
+  <text x="1015" y="184" text-anchor="middle" class="text">로그인·권한 확인</text>
+
+  <rect x="900" y="300" width="230" height="105" class="box" fill="#fce7f3"/>
+  <text x="1015" y="338" text-anchor="middle" class="label">데이터베이스</text>
+  <text x="1015" y="369" text-anchor="middle" class="text">사용자·방·메시지 저장</text>
+
+  <rect x="900" y="485" width="230" height="105" class="box" fill="#ede9fe"/>
+  <text x="1015" y="523" text-anchor="middle" class="label">Redis Pub/Sub</text>
+  <text x="1015" y="554" text-anchor="middle" class="text">여러 서버 간 메시지 공유</text>
+
+  <path d="M275 160 C330 160 350 260 410 260" class="line"/>
+  <path d="M275 345 L410 345" class="line"/>
+  <path d="M275 530 C330 530 350 420 410 420" class="line"/>
+  <text x="330" y="235" class="text">WebSocket</text>
+  <text x="305" y="335" class="text">WebSocket</text>
+  <text x="330" y="485" class="text">WebSocket</text>
+
+  <path d="M740 270 L900 170" class="line"/>
+  <path d="M740 340 L900 350" class="line"/>
+  <path d="M740 420 L900 535" class="line"/>
+  <text x="790" y="215" class="text">토큰 검증</text>
+  <text x="790" y="325" class="text">저장·조회</text>
+  <text x="770" y="490" class="text">메시지 공유</text>
+
+  <text x="600" y="660" text-anchor="middle" class="text">작은 채팅 메시지는 WebSocket으로 전달하고, 대용량 파일은 별도 업로드 후 URL만 전달</text>
+</svg>

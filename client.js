@@ -19,3 +19,18 @@ chatForm.addEventListener('submit', (event) => {
   chatInput.value = '';
   chatInput.focus();
 });
+
+// ----------Welcome WebSocket World----------
+
+//웹 소켓으로 통신하기 위한 주소. (매개변수로 주소를 넣는다.)
+const ws = new WebSocket(`ws://${location.host}`);
+// 실제 실행은 위 코드가 함.
+
+// ws.on("open", () => {}); 이렇게 해도 됨. 근데 이렇게 쓰지 않음.
+ws.onopen = () => {
+  console.log('서버 연결');
+};
+
+ws.onclose = () => {
+  console.log('서버 연결 해제');
+};
