@@ -81,6 +81,12 @@ const wss = new WebSocketServer({ server });
 wss.on('connection', (ws) => {
   console.log('클라이언트 연결!');
 
+  //client에서 send 한 데이터를 받는 코드.
+  ws.on('message', (data) => {
+    // 이진수로 데이터가 오기에 toString()화.
+    console.log(data.toString());
+  });
+
   ws.on('close', (ws) => {
     console.log('클라이언트 연결 해제!');
   });
