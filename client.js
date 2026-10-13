@@ -14,7 +14,8 @@ chatForm.addEventListener('submit', (event) => {
   const message = chatInput.value.trim(); //앞 뒤 여백 지우기.
   if (!message) return; //메세지 작성 안함 => return
 
-  ws.send(message); //서버로 message를 보내는
+  // ws.send(message); //서버로 message 타입 데이터를 보내기
+  ws.send(JSON.stringify({ type: 'chat', text: message }));
   addMessage(message);
 
   chatInput.value = '';

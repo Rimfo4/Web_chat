@@ -83,8 +83,21 @@ wss.on('connection', (ws) => {
 
   //client에서 send 한 데이터를 받는 코드.
   ws.on('message', (data) => {
-    // 이진수로 데이터가 오기에 toString()화.
+    // 이진수로 데이터가 오기에 toString()을 하면 16진수로 메세지화.
     console.log(data.toString());
+
+    let json;
+    try {
+      json = JSON.parse(data);
+    } catch (error) {
+      return; //크랙 데이터로 인한 서버가 죽는 것을 방지.
+    }
+
+    switch (json.type) {
+      case 'chat':
+        console.log('chat 수신: ', json.text);
+        break;
+    }
   });
 
   ws.on('close', (ws) => {
