@@ -38,3 +38,18 @@
           - ws.send( {type : "message", text:message }); //json -> string
         - ws.onopen = () => {};
         - ws.onclose = () => {};
+   2. BroadCast
+      - client A -> Server -> 모든 client
+      - client B -> Server -> 모든 client
+
+      - server.js
+        - 연결된 client들 목록
+          - wss.on("connection", )할 때, client 추가
+          - wss.on("close", )할 때, client 삭제
+        - message 수신 -> message 객체 -> broadCast()
+        - broadCastMessage 객체 = {type, text, id, timestamp}
+        - broadcast() = client 목록에서 webSocket.OPEN인 client에게 send()
+
+      - client.js
+        - message 송신 -> Server: send() when: submit
+        - message 수신(onMessage()) -> addMessage()

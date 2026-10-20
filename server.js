@@ -72,6 +72,20 @@ server.listen(PORT, HOST, () => {
 
 //------------Welcome Web Socket Server Wolrd---------
 const { WebSocketServer } = require('ws');
+const clients = new Set();
+let nextMessageId = 0; //broadcastMessage id => 고유
+
+function broadcast(broadcastMessage) {
+  // broadcastMessage => string: data
+  const data = JSON.stringify(broadcastMessage);
+
+  // client 목록에서 하나씩 꺼내어 client -> 상태 === Websocket.OPEN 인 client.send(data)
+  for (const client of clients) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(data);
+    }
+  }
+}
 
 // http 서버 : 정적 파일(HTML, CSS, JS, ...)을 서비스
 // WebSocket 서버 : 실시간 서비스
@@ -80,11 +94,13 @@ const wss = new WebSocketServer({ server });
 
 wss.on('connection', (ws) => {
   console.log('클라이언트 연결!');
+  //client 목록에 client 추가
+  clients.add(ws);
 
   //client에서 send 한 데이터를 받는 코드.
   ws.on('message', (data) => {
     // 이진수로 데이터가 오기에 toString()을 하면 16진수로 메세지화.
-    console.log(data.toString());
+    // console.log(data.toString());
 
     let json;
     try {
@@ -96,11 +112,22 @@ wss.on('connection', (ws) => {
     switch (json.type) {
       case 'chat':
         console.log('chat 수신: ', json.text);
+        const broadcastMessage = {
+          type: json.type,
+          text: json.text,
+          id: nextMessageId++,
+          timestamp: Date.now(),
+        };
+        broadcast(broadcastMessage);
+        console.log('broadcast :', broadcastMessage);
         break;
     }
+    // console.log(clients);
   });
 
   ws.on('close', (ws) => {
     console.log('클라이언트 연결 해제!');
+    //client 목록에서 client 삭제
+    clients.delete(ws);
   });
 });

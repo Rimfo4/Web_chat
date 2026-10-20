@@ -16,7 +16,7 @@ chatForm.addEventListener('submit', (event) => {
 
   // ws.send(message); //서버로 message 타입 데이터를 보내기
   ws.send(JSON.stringify({ type: 'chat', text: message }));
-  addMessage(message);
+  // addMessage(message);
 
   chatInput.value = '';
   chatInput.focus();
@@ -32,7 +32,20 @@ const ws = new WebSocket(`ws://${location.host}`);
 ws.onopen = () => {
   console.log('서버 연결');
 };
+//server랑 send하면 아래 코드 실행됨.
+ws.onmessage = (event) => {
+  //string -> json
+  const data = event.data;
+  const json = JSON.parse(data);
 
+  //type: chat -> 채팅창에 대화로 추가(li)
+  switch (json.type) {
+    case 'chat':
+      console.log(json.text);
+      addMessage(json.text);
+      break;
+  }
+};
 ws.onclose = () => {
   console.log('서버 연결 해제');
 };
