@@ -92,9 +92,22 @@ h1 {
   background: var(--bubble);
   line-height: 1.55;
   animation: message-in 0.28s ease both;
+
+  display: flex;
+  flex-direction: row;
+}
+#messages li.mine {
+  align-self: flex-end;
+  border-radius: 16px 4px 16px 16px;
+  background: var(--accent);
 }
 #messages li:first-child {
   background: linear-gradient(135deg, #7c5cff33, var(--bubble));
+}
+.nickname {
+  font-size: 12px;
+  color: gold;
+  line-height: 2;
 }
 #chat-form {
   grid-column: 2;
@@ -195,6 +208,11 @@ h1 {
     border-radius: 0;
     padding: 12px;
   }
-  #chat-input { min-height: auto; resize: none; }
-  #chat-form button { min-height: auto; }
+  #chat-input {
+    min-height: auto;
+    resize: none;
+  }
+  #chat-form button {
+    min-height: auto;
+  }
 }

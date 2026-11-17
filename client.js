@@ -2,9 +2,21 @@ const chatForm = document.querySelector('#chat-form');
 const chatInput = document.querySelector('#chat-input');
 const messages = document.querySelector('#messages');
 
-function addMessage(message) {
+function addMessage(senderNinkname, message) {
   const messageItem = document.createElement('li');
-  messageItem.textContent = message;
+  if (senderNinkname === nickname) {
+    messageItem.classList.add('mine');
+  }
+  const name = document.createElement('div');
+  name.textContent = `${senderNinkname}:  `;
+  name.classList.add('nickname');
+  messageItem.appendChild(name);
+
+  const msg = document.createElement('div');
+  msg.textContent = `${message}`;
+  messageItem.appendChild(msg);
+
+  // messageItem.textContent = `${senderNinkname}: ${message}`; //<li>닉네임 : 메세지</li>
   messages.appendChild(messageItem);
 }
 
@@ -28,9 +40,12 @@ chatForm.addEventListener('submit', (event) => {
 const ws = new WebSocket(`ws://${location.host}`);
 // 실제 실행은 위 코드가 함.
 
+const nickname = prompt('당신의 닉네임을 입력하세요.').trim() || '익명';
+
 // ws.on("open", () => {}); 이렇게 해도 됨. 근데 이렇게 쓰지 않음.
 ws.onopen = () => {
   console.log('서버 연결');
+  ws.send(JSON.stringify({ type: 'join', text: nickname })); //server에 ninkname 전송.
 };
 //server랑 send하면 아래 코드 실행됨.
 ws.onmessage = (event) => {
@@ -42,7 +57,8 @@ ws.onmessage = (event) => {
   switch (json.type) {
     case 'chat':
       console.log(json.text);
-      addMessage(json.text);
+      console.log(json.nickname);
+      addMessage(json.nickname, json.text);
       break;
   }
 };

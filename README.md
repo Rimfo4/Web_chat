@@ -46,10 +46,28 @@
         - 연결된 client들 목록
           - wss.on("connection", )할 때, client 추가
           - wss.on("close", )할 때, client 삭제
-        - message 수신 -> message 객체 -> broadCast()
+        - message 수신 -> broadCastMessage 객체 -> broadCast()
         - broadCastMessage 객체 = {type, text, id, timestamp}
         - broadcast() = client 목록에서 webSocket.OPEN인 client에게 send()
 
       - client.js
         - message 송신 -> Server: send() when: submit
         - message 수신(onMessage()) -> addMessage()
+
+   3. nickname
+      - client A -> Server -> 모든 clients
+      - client B -> Server -> 모든 client
+
+      - server.js
+        - 연결된 client들 목록
+          - wss.on("connection", )할 때, client 추가
+          - ws.on("message", ) 그리고 type "join" 이면 users {ws, {ninkname} }
+          - wss.on("close", )할 때, client 삭제, users 에서 ws 삭제
+        - message 수신 -> broadCastMessage 객체 -> broadCast()
+        - broadCastMessage 객체 = {type, text, id, timestamp, ninkname}
+        - broadcast() = client 목록에서 webSocket.OPEN인 client에게 send()
+
+      - client.js
+        - message 송신 -> Server: send({"join":nickname})
+        - message 송신 -> Server: send() when: submit
+        - message 수신(onMessage()) -> addMessage(ninkname, text)
