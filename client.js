@@ -1,20 +1,26 @@
 const chatForm = document.querySelector('#chat-form');
 const chatInput = document.querySelector('#chat-input');
 const messages = document.querySelector('#messages');
+chatInput.focus();
 
 function addMessage(senderNinkname, message) {
   const messageItem = document.createElement('li');
   if (senderNinkname === nickname) {
     messageItem.classList.add('mine');
+  } else {
+    const name = document.createElement('div');
+    name.textContent = senderNinkname;
+    name.classList.add('nickname');
+    messageItem.appendChild(name);
   }
-  const name = document.createElement('div');
-  name.textContent = `${senderNinkname}:  `;
-  name.classList.add('nickname');
-  messageItem.appendChild(name);
 
-  const msg = document.createElement('div');
-  msg.textContent = `${message}`;
-  messageItem.appendChild(msg);
+  //메세지
+  messageItem.appendChild(document.createTextNode(message));
+
+  // const time = document.createElement('span');
+  // name.textContent = senderNinkname;
+  // name.classList.add('nickname');
+  // messageItem.appendChild(name);
 
   // messageItem.textContent = `${senderNinkname}: ${message}`; //<li>닉네임 : 메세지</li>
   messages.appendChild(messageItem);
