@@ -3,7 +3,7 @@ const chatInput = document.querySelector('#chat-input');
 const messages = document.querySelector('#messages');
 chatInput.focus();
 
-function addMessage(senderNinkname, message) {
+function addMessage(senderNinkname, message, timestamp) {
   const messageItem = document.createElement('li');
   if (senderNinkname === nickname) {
     messageItem.classList.add('mine');
@@ -17,10 +17,11 @@ function addMessage(senderNinkname, message) {
   //메세지
   messageItem.appendChild(document.createTextNode(message));
 
-  // const time = document.createElement('span');
-  // name.textContent = senderNinkname;
-  // name.classList.add('nickname');
-  // messageItem.appendChild(name);
+  //시간
+  const time = document.createElement('div');
+  time.textContent = `${new Date(timestamp).toLocaleTimeString()}`;
+  time.classList.add('timestamp');
+  messageItem.appendChild(time);
 
   // messageItem.textContent = `${senderNinkname}: ${message}`; //<li>닉네임 : 메세지</li>
   messages.appendChild(messageItem);
@@ -64,7 +65,7 @@ ws.onmessage = (event) => {
     case 'chat':
       console.log(json.text);
       console.log(json.nickname);
-      addMessage(json.nickname, json.text);
+      addMessage(json.nickname, json.text, json.timestamp);
       break;
   }
 };

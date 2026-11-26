@@ -100,6 +100,10 @@ h1 {
   color: gold;
   font-size: 0.8rem;
 }
+.timestamp {
+  color: rgb(255, 255, 255);
+  font-size: 0.8rem;
+}
 #chat-form {
   grid-column: 2;
   grid-row: 1 / -1;
